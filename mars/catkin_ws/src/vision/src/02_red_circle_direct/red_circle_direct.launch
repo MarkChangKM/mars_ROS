@@ -1,0 +1,10 @@
+<launch>
+    <node name="camera_node" pkg="vision" type="camera_node.py" output="screen" required="true"/>
+
+    <remap from="red_circle_direct/compressed" to= "/camera_node/image/compressed"/>
+    <node name="red_circle_direct" pkg="vision" type="red_circle_direct.py" output="screen" required="true"/>
+
+    <node name="serial_node" pkg="rosserial_python" type="serial_node.py" output="screen" required="true">
+      <param name="port" value="/dev/ttyUSB0"/>
+    </node>
+</launch>
