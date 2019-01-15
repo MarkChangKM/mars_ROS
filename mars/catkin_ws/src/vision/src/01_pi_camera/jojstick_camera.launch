@@ -1,0 +1,11 @@
+<launch>
+    <remap from="view_camera/compressed" to= "/camera_node/image/compressed"/>
+    <node name="view_camera" pkg="vision" type="view_camera.py" output="screen" required="true"/>
+
+    <node pkg="joy" type="joy_node" name="joy" output="screen">
+    <param name="dev" type="string" value="/dev/input/js2" />
+    <param name="deadzone" value="0.12" />
+    </node>
+
+    <node name="joystick_wheel_control" pkg="examples" type="joystick_wheel_control.py" output="screen" required="true"/>
+</launch>
