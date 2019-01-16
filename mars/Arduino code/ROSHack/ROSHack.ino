@@ -1,6 +1,6 @@
 #include <SoftwareSerial.h>
 #include <ros.h>
-#include <duckietown_msgs/WheelsCmdStamped.h>
+#include <duckietown_msgs/WheelsCmd.h>
 ros::NodeHandle nh;
 
 int vel_left = 0;
@@ -22,8 +22,8 @@ SoftwareSerial BTSerial(10,9);
 
 #define BTspeed 60
 
-void WheelsCmd(const duckietown_msgs::WheelsCmdStamped& cmd_msg);
-ros::Subscriber<duckietown_msgs::WheelsCmdStamped> Wheelcmd("wheels_cmd_executed",WheelsCmd );
+void WheelsCmd(const duckietown_msgs::WheelsCmd& cmd_msg);
+ros::Subscriber<duckietown_msgs::WheelsCmd> Wheelcmd("wheels_cmd_executed",WheelsCmd );
 
 typedef void (*f)();
 f func[5] = {&go, &left, &right, &back, &park};

@@ -1,4 +1,4 @@
-void WheelsCmd(const duckietown_msgs::WheelsCmdStamped& cmd_msg)
+void WheelsCmd(const duckietown_msgs::WheelsCmd& cmd_msg)
 {
   digitalWrite(STBY, HIGH);
   vel_left = calcPWM(cmd_msg.vel_left);

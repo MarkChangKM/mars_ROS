@@ -2,7 +2,7 @@
 import rospy
 import math
 
-from duckietown_msgs.msg import WheelsCmdStamped
+from examples.msg import WheelsCmd
 from sensor_msgs.msg import Joy
 
 class joystick_wheel_control(object):
@@ -13,7 +13,7 @@ class joystick_wheel_control(object):
         self.joy = None
 
         # Publications
-        self.pub_car_cmd = rospy.Publisher("wheels_cmd_executed", WheelsCmdStamped, queue_size=1)
+        self.pub_car_cmd = rospy.Publisher("wheels_cmd_executed", WheelsCmd, queue_size=1)
 
         # Subscriptions
         self.sub_joy_ = rospy.Subscriber("joy", Joy, self.cbJoy, queue_size=1)
@@ -23,8 +23,7 @@ class joystick_wheel_control(object):
         self.publishControl()
 
     def publishControl(self):
-        car_cmd_msg = WheelsCmdStamped()
-        car_cmd_msg.header.stamp = self.joy.header.stamp
+        car_cmd_msg = WheelsCmd()
         if self.joy.axes[1]>=0:
             if self.joy.axes[0]>=0:
                 car_cmd_msg.vel_left = self.joy.axes[1]/1.1
