@@ -8,7 +8,7 @@ kb = None
 #try to import ros python package
 try:
 	import rospy
-	from examples.msg import WheelsCmd
+	from duckietown_msgs.msg import WheelsCmdStamped
 	print("Rospy found")
 except ImportError:
 	print("Rospy not found")

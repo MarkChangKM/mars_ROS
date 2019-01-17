@@ -2,7 +2,7 @@
 import rospy
 import math
 
-from examples.msg import WheelsCmd
+from duckietown_msgs.msg import WheelsCmdStamped
 from sensor_msgs.msg import Joy
 
 class joystick_wheel_control(object):
