@@ -1,6 +1,6 @@
 <launch>
     <remap from="view_camera/compressed" to= "/camera_node/image/compressed"/>
-    <node name="view_camera" pkg="vision" type="view_camera.py" output="screen" required="true"/>
+    <node name="view_camera" pkg="pi_camera" type="view_camera.py" output="screen" required="true"/>
 
     <node pkg="joy" type="joy_node" name="joy" output="screen">
     <param name="dev" type="string" value="/dev/input/js2" />

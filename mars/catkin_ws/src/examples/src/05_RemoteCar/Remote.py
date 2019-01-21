@@ -47,7 +47,7 @@ def parseCmd():
 
 def has_ROS():
 	rospy.init_node('remote', anonymous=True)
-	pub = rospy.Publisher('wheelCmd', WheelsCmd, queue_size=1)
+	pub = rospy.Publisher('wheelCmd', WheelsCmdStamped, queue_size=1)
 	rate = rospy.Rate(10) #10hz
 
 	#ros main publish loop
@@ -57,7 +57,7 @@ def has_ROS():
 			pressedChar = kb.getch()
 		else:
 			pressedChar = None
-		msg = WheelsCmd()
+		msg = WheelsCmdStamped()
 		msg.vel_left, msg.vel_right = parseCmd()
 		pub.publish(msg)
 		rate.sleep()

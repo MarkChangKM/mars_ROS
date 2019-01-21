@@ -13,7 +13,7 @@ class joystick_wheel_control(object):
         self.joy = None
 
         # Publications
-        self.pub_car_cmd = rospy.Publisher("wheels_cmd_executed", WheelsCmd, queue_size=1)
+        self.pub_car_cmd = rospy.Publisher("wheels_cmd_executed", WheelsCmdStamped, queue_size=1)
 
         # Subscriptions
         self.sub_joy_ = rospy.Subscriber("joy", Joy, self.cbJoy, queue_size=1)
@@ -23,7 +23,7 @@ class joystick_wheel_control(object):
         self.publishControl()
 
     def publishControl(self):
-        car_cmd_msg = WheelsCmd()
+        car_cmd_msg = WheelsCmdStamped()
         if self.joy.axes[1]>=0:
             if self.joy.axes[0]>=0:
                 car_cmd_msg.vel_left = self.joy.axes[1]/1.1

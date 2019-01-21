@@ -1,5 +1,5 @@
 <launch>
-    <node name="camera_node" pkg="vision" type="camera_node.py" output="screen" required="true"/>
+    <node name="camera_node" pkg="pi_camera" type="camera_node.py" output="screen" required="true"/>
 
     <node name="serial_node" pkg="rosserial_python" type="serial_node.py" output="screen" required="true">
       <param name="port" value="/dev/ttyUSB0"/>
