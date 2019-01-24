@@ -1,12 +1,10 @@
 <launch>
-    <node name="camera_node" pkg="vision" type="camera_node.py" output="screen" required="true"/>
-
-    <remap from="decoder_node/compressed_image" to="camera_node/image/compressed"/>
-    <remap from="decoder_node/image/raw" to="camera_node/image/raw"/>
-    <node name="decoder_node" pkg="vision" type="decoder_node.py" output="screen" required="true"/>
+    <include  file="$(find pi_camera)/launch/camera_node.launch">
+        <arg name="raw" value="true"/>
+    </include>
 
     <param name="/decoder_node/publish_freq" value="10.0"/>
 
-    <node pkg="camera_calibration" type="cameracalibrator.py" name="intrinsic_calibrator" args="--size 7x5 --square 0.031 image:=/camera_node/image/raw camera:=/camera_node"/>
+    <node ns="$(arg veh)" pkg="camera_calibration" type="cameracalibrator.py" name="intrinsic_calibrator" args="--size 7x5 --square 0.031 image:=/camera_node/image/raw camera:=/decoder_node"/>
 
 </launch>

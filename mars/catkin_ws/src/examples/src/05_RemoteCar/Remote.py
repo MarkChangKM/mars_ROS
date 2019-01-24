@@ -47,7 +47,7 @@ def parseCmd():
 
 def has_ROS():
 	rospy.init_node('remote', anonymous=True)
-	pub = rospy.Publisher('wheelCmd', WheelsCmdStamped, queue_size=1)
+	pub = rospy.Publisher('wheels_cmd_executed', WheelsCmdStamped, queue_size=10)
 	rate = rospy.Rate(10) #10hz
 
 	#ros main publish loop

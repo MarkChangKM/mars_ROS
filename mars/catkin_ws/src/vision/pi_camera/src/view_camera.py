@@ -13,6 +13,7 @@ class view_camera(object):
         np_arr = np.fromstring(msg.data, np.uint8)
         img = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
         cv2.imshow("camera",img)
+        cv2.waitKey(1)
 if __name__ == '__main__':
     rospy.init_node('view_camera',anonymous=False)
     view_camera = view_camera()
