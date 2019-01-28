@@ -50,38 +50,6 @@ class DecoderNode(object):
         self.pub_raw.publish(img_msg)
         self.pub_compressed.publish(msg)
 
-    def cbSrvSetCameraInfo(self, req):
-        # TODO: save req.camera_info to yaml file
-        rospy.loginfo("[cbSrvSetCameraInfo] Callback!")
-        filename = "/camera_calibration/marsbot.yaml"
-        response = SetCameraInfoResponse()
-        response.success = self.saveCameraInfo(req.camera_info, filename)
-        response.status_message = "Write to %s" % filename  #TODO file name
-        return response
-
-    def saveCameraInfo(self, camera_info_msg, filename):
-        # Convert camera_info_msg and save to a yaml file
-        rospy.loginfo("[saveCameraInfo] filename: %s" % (filename))
-
-        # Converted from camera_info_manager.py
-        calib = {'image_width': camera_info_msg.width,
-        'image_height': camera_info_msg.height,
-        'camera_name': rospy.get_name().strip("/"),  #TODO check this
-        'distortion_model': camera_info_msg.distortion_model,
-        'distortion_coefficients': {'data': camera_info_msg.D, 'rows':1, 'cols':5},
-        'camera_matrix': {'data': camera_info_msg.K, 'rows':3, 'cols':3},
-        'rectification_matrix': {'data': camera_info_msg.R, 'rows':3, 'cols':3},
-        'projection_matrix': {'data': camera_info_msg.P, 'rows':3, 'cols':4}}
-
-        rospy.loginfo("[saveCameraInfo] calib %s" % (calib))
-
-        try:
-            f = open(filename, 'w')
-            yaml.safe_dump(calib, f)
-            return True
-        except IOError:
-            return False
-
 if __name__ == '__main__':
     rospy.init_node('decoder_low_freq',anonymous=False)
     node = DecoderNode()

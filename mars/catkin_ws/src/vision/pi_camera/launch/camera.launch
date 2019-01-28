@@ -1,7 +1,7 @@
 <launch>
     <arg name="raw" default="false" doc="If set to true, also publish raw image using decoder."/>
     <arg name="cam_info" default="true" doc="If set to true, use cam_info_reader_node to pusblish CameraInfo."/>
-    <arg name="live" default="false" doc="live set to false means we don't run the actual camera (i.e. running from a log file" />
+    <arg name="live" default="true" doc="live set to false means we don't run the actual camera (i.e. running from a log file" />
     <group if="$(arg live)">
         <node name="camera_node" pkg="pi_camera" type="camera_node.py" output="screen" required="true"/>
     </group>
