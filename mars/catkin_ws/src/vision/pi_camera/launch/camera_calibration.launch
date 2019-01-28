@@ -1,8 +1,4 @@
 <launch>
-    <include  file="$(find pi_camera)/launch/camera.launch">
-        <arg name="raw" value="true"/>
-    </include>
-
     <param name="/decoder_node/publish_freq" value="10.0"/>
 
     <node pkg="camera_calibration" type="cameracalibrator.py" name="intrinsic_calibrator" args="--size 7x5 --square 0.031 image:=/camera_node/image/raw camera:=/camera_node"/>
